@@ -12,7 +12,7 @@
         <div class="panel-heading">
             <div class="form-group">
                 <div class="col-md-11">
-                    <h3 class="panel-title">{{title}}</h3>
+                    <h3 class="panel-title">{{userdetails.title}}</h3>
                 </div>
                 <div class="col-md-1 closeBtn">
                     <div ng-click="Close($event)">X</div>
@@ -22,10 +22,11 @@
         <div class="panel-body">
             <div class="form-group">
                 <div class="col-md-4">
-                    {{username}} Wants to Add :
+                    {{userdetails.UserName}} Wants to Add :
                 </div>
                 <div class="col-md-6">
-                    <input type="text" placeholder="Please enter the item to add into your bucket" class="form-control" />
+                    <input ng-Custom-Formatter type="text" ng-model="userdetails.ItemCount"
+                           placeholder="Please enter the item to add into your bucket" class="form-control" />
                 </div>
                 <div class="col-md-2">
                     <input type="button" value="Add" class="btn btn-danger" />

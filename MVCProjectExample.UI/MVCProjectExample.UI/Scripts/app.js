@@ -23,14 +23,35 @@
             }
         }
     })
+    .directive('ngCustomFormatter', function () {
+        return {
+            restrict: 'A',
+            replace: false,
+            transclude: false,
+            require: 'ngModel',
+            link: function (scope, element, attrs, controller) {
+                controller.$parsers.push(function (inputValue) {
+                    var transformedInput;
+                    if (isNaN(inputValue) || inputValue == null || inputValue < 0) {
+                        transformedInput = 0;
+                    }
+                    if (transformedInput != inputValue) {
+                        controller.$setViewValue(transformedInput);
+                        controller.$render();
+                    }
+                    return transformedInput;
+                });
+            }
+        }
+    })
     .controller("mainController", function ($scope) {
         $scope.UserDetails = [];
 
         for (var i = 0; i < 3; i++) {
             $scope.UserDetails.push({
-                UserId: 'USER001' + (i + 1).toString(),
+                title: 'USER00' + (i + 1).toString(),
                 UserName: 'USER' + (i + 1).toString(),
-                ItemCount: 0
+                ItemCount: i
             });
         }
 
