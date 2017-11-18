@@ -1,0 +1,31 @@
+﻿@using MVCProjectExample.UI.Models;
+@model IEnumerable<Department>
+<p>
+    <b>List of Departmenbt</b>
+</p>
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <tr>
+        <td>
+            Department Id
+        </td>
+        <td>
+            Department Name
+        </td>
+        <td>
+            Location
+        </td>
+        <td>
+            No of Employee
+        </td>
+    </tr>
+    @foreach (Department _deppartment in Model)
+    {
+        <tr>
+            <td>@_deppartment.DepartmentId</td>
+            <td>@_deppartment.DepartmentName</td>
+            <td>@_deppartment.Location</td>
+            <td>@_deppartment.NoOfEmployee</td>
+        </tr>
+    }
+
+</table>

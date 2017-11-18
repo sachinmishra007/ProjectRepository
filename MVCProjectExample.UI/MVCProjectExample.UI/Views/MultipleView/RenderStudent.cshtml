@@ -1,0 +1,23 @@
+﻿@using MVCProjectExample.UI.Models;
+@model IEnumerable<Student>
+
+<p>
+    <b>Student List</b>
+</p>
+<table class="table table-bordered table-bordered table-responsive table-striped table-hover ">
+    <tr>
+        <td>Student Id</td>
+        <td>Name</td>
+        <td>Code</td>
+        <td>Enrollment No</td>
+    </tr>
+    @foreach (Student _student in Model)
+    {
+        <tr>
+            <td>@_student.StudentId</td>
+            <td>@_student.Name</td>
+            <td>@_student.Code</td>
+            <td>@_student.EnrollmentNo</td>
+        </tr>
+    }
+</table>

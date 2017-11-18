@@ -1,0 +1,22 @@
+﻿<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/app.js"></script>
+<div ng-app="mainApp" ng-controller="mainController">
+    <h1>
+        Welcome to Custom Directive Example {{UserDetails.UserId}}
+    </h1>
+    <div ng-controller="Controller1">
+
+
+        <custom-Directive title="'User1'" username="UserDetails.Controller1"></custom-Directive>
+    </div>
+    <div ng-controller="Controller2">
+
+        <custom-Directive title="'User2'"username="UserDetails.Controller2"></custom-Directive>
+
+    </div>
+    <div ng-controller="Controller3">
+
+        <custom-Directive title="'User3'" username="UserDetails.Controller3"></custom-Directive>
+
+    </div>
+</div>

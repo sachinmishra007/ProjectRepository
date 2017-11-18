@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Upload";
+}
+
+<h2>Upload</h2>
+<input type="file" id="FileUpload1" multiple />
+<input type="button" id="btnUpload" value="Upload Files" />
+<div id="divFinalResult">
+
+</div>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btnUpload').on('click', function () {
+            if (window.FormData != undefined) {
+
+                var fileUpload1 = $('#FileUpload1').get(0);
+                var files = fileUpload1.files;
+                
+                //Create the file of the FormData Object to Post in MVC
+                var _formData = new FormData();
+
+                for (var i = 0; i < files.length; i++) {
+                    _formData.append(files[i].name, files[i]);
+                }
+
+                _formData.append("username", "Uploaded");
+
+                $.ajax({
+                    url: 'Home/UploadFile',
+                    type: 'POST',
+                    data: _formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (_result) {
+                        console.log("Error result", _result);
+                        $('#divFinalResult').text(_result);
+                    },
+                    error: function (_error) {
+                        console.log("Error Logging", _error);
+                        $('#divFinalResult').text(_error);
+                    }
+                });
+                console.log("Form data object is ready");
+            }
+            else {
+                console.log("Oops !!!!!Form Data Obect is not supoorted by Browser !");
+            }
+        });
+    });
+</script>

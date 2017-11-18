@@ -1,0 +1,60 @@
+﻿@using MVCProjectExample.UI.Models;
+@model Tuple<List<Teacher>, List<Student>>
+@{
+    ViewBag.Title = "Home Page";
+}
+@{
+    IEnumerable<Teacher> _Recteacher = ViewData["Teachers"] as IEnumerable<Teacher>;
+    IEnumerable<Student> __RecStudent = ViewData["Students"] as IEnumerable<Student>;
+}
+
+
+<h2>@ViewBag.Message</h2>
+<p>
+    <b>Teachers</b>
+</p>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <tr>
+        <td>ID</td>
+        <td>Code</td>
+        <td>Name</td>
+    </tr>
+    @foreach (Teacher _teacher in Model.Item1)
+    {
+        <tr>
+            <td>@_teacher.TeacherId</td>
+            <td>@_teacher.Code</td>
+            <td>@_teacher.Name</td>
+        </tr>
+    }
+</table>
+<hr />
+<p>
+    <b>Students</b>
+</p>
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped ">
+    <tr>
+        <td>
+            Student Id
+        </td>
+        <td>
+            Name
+        </td>
+        <td>
+            Code
+        </td>
+        <td>
+            Enrollment No
+        </td>
+    </tr>
+    @foreach (Student _student in Model.Item2)
+    {
+        <tr>
+            <td>@_student.StudentId</td>
+            <td>@_student.Name</td>
+            <td>@_student.Code</td>
+            <td>@_student.EnrollmentNo</td>
+        </tr>
+    }
+</table>
