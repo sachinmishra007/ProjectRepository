@@ -8,25 +8,31 @@
     .directive("customDirective", function () {
         return {
             restrict: 'EA',
-            replace: true,
+            replace: false,
             transclude: false,
             scope: {
-                username: '=',
-                title: '='
+                userdetails: '=',
+
             },
             templateUrl: '/MVCProjectExample.UI/Partials/CustomDirective/CustomDirective.html',
             link: function (scope, element, attrs, controller) {
-
+                scope.showUp = true;
+                scope.Close = function ($event) {
+                    scope.showUp = false;
+                }
             }
         }
     })
     .controller("mainController", function ($scope) {
-        $scope.UserDetails = {};
+        $scope.UserDetails = [];
 
-        $scope.UserDetails.UserId = "ADMIN1234";
-        $scope.UserDetails.Controller1 = "User1";
-        $scope.UserDetails.Controller2 = "User2";
-        $scope.UserDetails.Controller3 = "User3";
+        for (var i = 0; i < 3; i++) {
+            $scope.UserDetails.push({
+                UserId: 'USER001' + (i + 1).toString(),
+                UserName: 'USER' + (i + 1).toString(),
+                ItemCount: 0
+            });
+        }
 
     })
     .controller("Controller1", function ($scope) {

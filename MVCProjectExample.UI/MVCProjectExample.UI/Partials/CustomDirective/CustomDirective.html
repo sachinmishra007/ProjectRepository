@@ -1,4 +1,39 @@
 ﻿<div>
-    <h3>{{title}}</h3>
-    {{username}}
+    <style type="text/css">
+        .closeBtn {
+            text-align: right;
+            font-size: 16px;
+            font-family: Arial;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+    <div ng-show="showUp" class="panel panel-primary ">
+        <div class="panel-heading">
+            <div class="form-group">
+                <div class="col-md-11">
+                    <h3 class="panel-title">{{title}}</h3>
+                </div>
+                <div class="col-md-1 closeBtn">
+                    <div ng-click="Close($event)">X</div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <div class="col-md-4">
+                    {{username}} Wants to Add :
+                </div>
+                <div class="col-md-6">
+                    <input type="text" placeholder="Please enter the item to add into your bucket" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <input type="button" value="Add" class="btn btn-danger" />
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            Custom Directive &copy; by Sachin MIshra
+        </div>
+    </div>
 </div> 
