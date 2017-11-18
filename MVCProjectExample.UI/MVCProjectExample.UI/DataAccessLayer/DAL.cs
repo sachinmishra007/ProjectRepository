@@ -6,6 +6,9 @@ using System.Web;
 
 namespace MVCProjectExample.UI.DataAccessLayer
 {
+    /// <summary>
+    /// Code is added to Make content updated on Development_DEV_20145
+    /// </summary>
     public class DAL
     {
         public DAL()
