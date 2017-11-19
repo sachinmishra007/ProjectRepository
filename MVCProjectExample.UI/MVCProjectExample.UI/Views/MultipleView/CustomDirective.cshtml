@@ -4,6 +4,7 @@
     <h1>
         Welcome to Custom Directive Example {{UserDetails.UserId}}
     </h1>
+    {{UserDetails|json}}
     <div ng-controller="Controller1">
         @*<custom-Directive title="UserDetails[0].UserId" username="UserDetails[0].UserName"></custom-Directive>*@
         <custom-Directive userdetails="UserDetails[0]"></custom-Directive>

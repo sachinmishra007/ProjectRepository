@@ -25,11 +25,11 @@
                     {{userdetails.UserName}} Wants to Add :
                 </div>
                 <div class="col-md-6">
-                    <input ng-Custom-Formatter type="text" ng-model="userdetails.ItemCount"
-                           placeholder="Please enter the item to add into your bucket" class="form-control" />
+                    <input ng-custom-formatter type="text" ng-model="userdetails.ItemCount"
+                           placeholder="Please enter the item to add into your bucket" class="form-control "  disabled/>
                 </div>
                 <div class="col-md-2">
-                    <input type="button" value="Add" class="btn btn-danger" />
+                    <input type="button" value="Add" class="btn btn-danger" ng-click="AddNumbertoBucket()"/>
                 </div>
             </div>
         </div>
