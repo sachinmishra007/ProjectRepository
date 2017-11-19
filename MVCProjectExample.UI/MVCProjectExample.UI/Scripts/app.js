@@ -14,7 +14,7 @@
                 userdetails: '=',
 
             },
-            templateUrl: '/MVCProjectExample.UI/Partials/CustomDirective/CustomDirective.html',
+            templateUrl: '/Partials/CustomDirective/CustomDirective.html',
             link: function (scope, element, attrs, controller) {
                 scope.showUp = true;
                 scope.Close = function ($event) {
