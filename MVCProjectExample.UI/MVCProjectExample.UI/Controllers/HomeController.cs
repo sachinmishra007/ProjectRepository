@@ -1,6 +1,7 @@
 ﻿using MVCProjectExample.UI.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,7 @@ namespace MVCProjectExample.UI.Controllers
 
         public ActionResult Index()
         {
+            Response.Redirect(ConfigurationManager.AppSettings["WebSite"].ToString());
             return View();
         }
 
