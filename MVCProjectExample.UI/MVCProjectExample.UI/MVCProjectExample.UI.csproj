@@ -161,6 +161,7 @@
     <Content Include="Views\MultipleView\RenderDepartment.cshtml" />
     <Content Include="Views\Home\CustomDirective.cshtml" />
     <Content Include="Views\MultipleView\CustomDirective.cshtml" />
+    <Content Include="Views\Home\ViewNorthWind.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

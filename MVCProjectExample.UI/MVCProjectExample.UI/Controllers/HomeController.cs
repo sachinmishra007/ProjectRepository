@@ -88,6 +88,10 @@ namespace MVCProjectExample.UI.Controllers
             return new EmptyResult();
         }
 
-       
+        public ActionResult ViewNorthWind()
+        {
+            return View();
+        }
+
     }
 }
