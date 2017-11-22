@@ -116,6 +116,7 @@
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\customer.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -128,6 +129,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\CustomerController.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -173,6 +175,16 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\MultipleView\PartialsViews\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MVCBsuinessEntities\MVCBsuinessEntities.csproj">
+      <Project>{343eb70a-6024-4c7d-b958-0f4488ca0d1f}</Project>
+      <Name>MVCBsuinessEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCProjectExample.DataAccessLayer\MVCProjectExample.DataAccessLayer.csproj">
+      <Project>{4ab1e369-8984-4f33-aabd-20ee3a381dfd}</Project>
+      <Name>MVCProjectExample.DataAccessLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
