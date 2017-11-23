@@ -6,7 +6,7 @@
 
             this.GetCustomerInformation = function () {
                 return $http({
-                    url: 'api/customer/GetCustomer',
+                    url: '/api/customer/GetCustomer',
                     method: 'GET'
                 });
             }
