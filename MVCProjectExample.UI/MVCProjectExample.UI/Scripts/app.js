@@ -78,7 +78,7 @@
     })
     .controller("mainController", function ($scope) {
         $scope.UserDetails = [];
-
+        $scope.showLoading = true;
         for (var i = 0; i < 3; i++) {
             $scope.UserDetails.push({
                 title: 'USER00' + (i + 1).toString(),
@@ -86,6 +86,7 @@
                 ItemCount: i
             });
         }
+        $scope.showLoading = false;
 
     })
     .controller("Controller1", function ($scope) {

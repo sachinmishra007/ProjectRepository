@@ -5,41 +5,53 @@
 <script src="~/Scripts/customer.js"></script>
 <h2>Welcome to Northwind Database Example</h2>
 <div ng-app="CustomerApp" ng-controller="CustomerController">
-    <div class="form-group">
-        <div class="col-md-2">
-            Search For Customer
-        </div>
-        <div class="col-md-10">
-            <input ng-model="SearchCustomer" type="text" placeholder="Search For Customer" class="form-control" />
-        </div>
+
+    <div class="spinner" ng-if="showLoading">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
     </div>
-    <br /><br /><br />
-    <div class="form-group">
-        <table class="table table-bordered table-condensed table-hover table-responsive table-striped">
-            <tr>
-                <td>Customer Id</td>
-                <td>Company Name</td>
-                <td>Contact Name</td>
-                <td>Address</td>
-                <td>City</td>
-                <td>Region</td>
-                <td>Postal Code</td>
-                <td>Country</td>
-                <td>Phone</td>
-                <td>Fax</td>
-            </tr>
-            <tr ng-repeat="cust in CustomerInfo |filter:SearchCustomer">
-                <td>{{cust.CustomerId}}</td>
-                <td>{{cust.CompanyName}}</td>
-                <td>{{cust.ContactName}}</td>
-                <td>{{cust.Address}}</td>
-                <td>{{cust.City}}</td>
-                <td>{{cust.Region}}</td>
-                <td>{{cust.PostalCode}}</td>
-                <td>{{cust.Country}}</td>
-                <td>{{cust.Phone}}</td>
-                <td>{{cust.Fax}}</td>
-            </tr>
-        </table>
+    <div ng-if="!showLoading">
+
+        <div class="form-group">
+            <div class="col-md-2">
+                Search For Customer
+            </div>
+            <div class="col-md-10">
+                <input ng-model="SearchCustomer" type="text" placeholder="Search For Customer" class="form-control" />
+            </div>
+        </div>
+        <br /><br /><br />
+        <div class="form-group">
+            <table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+                <tr>
+                    <td>Customer Id</td>
+                    <td>Company Name</td>
+                    <td>Contact Name</td>
+                    <td>Address</td>
+                    <td>City</td>
+                    <td>Region</td>
+                    <td>Postal Code</td>
+                    <td>Country</td>
+                    <td>Phone</td>
+                    <td>Fax</td>
+                </tr>
+                <tr ng-repeat="cust in CustomerInfo |filter:SearchCustomer">
+                    <td>{{cust.CustomerId}}</td>
+                    <td>{{cust.CompanyName}}</td>
+                    <td>{{cust.ContactName}}</td>
+                    <td>{{cust.Address}}</td>
+                    <td>{{cust.City}}</td>
+                    <td>{{cust.Region}}</td>
+                    <td>{{cust.PostalCode}}</td>
+                    <td>{{cust.Country}}</td>
+                    <td>{{cust.Phone}}</td>
+                    <td>{{cust.Fax}}</td>
+                </tr>
+            </table>
+        </div>
+
     </div>
 </div>

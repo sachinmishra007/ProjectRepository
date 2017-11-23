@@ -12,11 +12,13 @@
             }
         })
     .controller("CustomerController", function ($scope, CustomerService) {
+        $scope.showLoading = true;
         $scope.CustomerInfo = [];
         CustomerService
             .GetCustomerInformation()
             .success(function (_result) {
                 $scope.CustomerInfo = _result;
+                $scope.showLoading = false;
                 //console.log($scope.CustomerInfo);
             })
             .error(function (_error) {
