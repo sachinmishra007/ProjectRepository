@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.Data Access Layer", "03.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCProjectExample.DataAccessLayer", "MVCProjectExample.DataAccessLayer\MVCProjectExample.DataAccessLayer.csproj", "{4AB1E369-8984-4F33-AABD-20EE3A381DFD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.Common", "04.Common", "{DDA4E382-2986-468E-A992-6DBB76AB188F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCProjectExample.Common", "MVCProjectExample.Common\MVCProjectExample.Common.csproj", "{947A3609-4D59-4973-833B-15881D635410}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{4AB1E369-8984-4F33-AABD-20EE3A381DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AB1E369-8984-4F33-AABD-20EE3A381DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AB1E369-8984-4F33-AABD-20EE3A381DFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{947A3609-4D59-4973-833B-15881D635410}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{947A3609-4D59-4973-833B-15881D635410}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{947A3609-4D59-4973-833B-15881D635410}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{947A3609-4D59-4973-833B-15881D635410}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,5 +46,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{343EB70A-6024-4C7D-B958-0F4488CA0D1F} = {28134C62-571A-4D2C-92E5-B768813D7DD9}
 		{4AB1E369-8984-4F33-AABD-20EE3A381DFD} = {2851108D-4F13-4D62-B926-EEC6AA80756B}
+		{947A3609-4D59-4973-833B-15881D635410} = {DDA4E382-2986-468E-A992-6DBB76AB188F}
 	EndGlobalSection
 EndGlobal
