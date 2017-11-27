@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Customer Infomration";
+}
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/customerpolicy/app.js"></script>
+<div ng-app="customerPolicyApp" ng-controller="customerPolicyController">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="#" ng-repeat="men in Menu" class="list-group-item" ng-class="{active:MenuItem.MenuSelectedIndex==$index}" ng-click="SelectedOption($index,men)">{{men.MenuName}}</a>
+                </div>
+            </div>            
+            <div class="col-md-9">
+                <div ng-include="'/MVCProjectExample.UI/Partials/CustomerPolicy/Funds.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>
