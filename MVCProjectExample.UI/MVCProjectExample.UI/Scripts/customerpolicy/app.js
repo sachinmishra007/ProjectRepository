@@ -4,7 +4,7 @@
     angular.module("customerPolicyApp", [])
     .constant('ApplicationSetting', {
         //URL: 'http://localhost/MVCProjectExample.UI/'
-        URL: 'http://sachinmishra007.azurewebsites.net'
+        URL: 'http://sachinmishra007.azurewebsites.net/'
     })
     .service('lookupService', ['$http', function ($http) {
 
