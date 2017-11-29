@@ -1,4 +1,5 @@
 ﻿<div ng-controller="FundController">
+    
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -32,8 +33,36 @@
             <div class="panel-heading">
                 <h2 class="panel-title">Funds</h2>
             </div>
-            <div class="panel-body">
-
+            
+            <div class="panel-body"  >
+                <div class="spinner" ng-if="showLoading">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
+                </div>
+                <table ng-if="!showLoading" class="table table-bordered table-condensed table-hover table-responsive table-striped">
+                    <tr>
+                        <td>Fund Name</td>
+                        <td>Fund Code</td>
+                        <td>Allowed Fund % Allocation</td>
+                        <td colspan="2" align="center">
+                            Action
+                        </td>
+                    </tr>
+                    <tr ng-repeat="fu in Fund | orderBy:$index">
+                        <td>{{fu.FundName}}</td>
+                        <td>{{fu.FundCode}}</td>
+                        <td>{{fu.AllowedFundPercentageAllocation}}</td>
+                        <td class="handCursor"  align="center">
+                            <span class="glyphicon glyphicon-edit"></span>                            
+                        </td>
+                        <td class="handCursor" align="center">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

@@ -2,7 +2,11 @@
 
     "use stritc";
     angular.module("customerPolicyApp", [])
-    .service('lookupService', function ($http) {
+    .constant('ApplicationSetting', {
+        //URL: 'http://localhost/MVCProjectExample.UI/'
+        URL: 'http://sachinmishra007.azurewebsites.net'
+    })
+    .service('lookupService', ['$http', function ($http) {
 
         this.GetMenuOption = function () {
             return [{
@@ -19,11 +23,22 @@
                 IncludeFile: '/MVCProjectExample.UI/Partials/CustomerPolicy/Nominee.html'
             }]
         };
-    })
-    .controller("customerPolicyController", function ($scope, lookupService) {
+    }])
+    .service('fundService', ['$http', 'ApplicationSetting', function ($http, ApplicationSetting) {
+        this.GetFundDetails = function () {
+            return $http({
+                method: 'GET',
+                url: ApplicationSetting.URL + 'api/FundDetails/GetFundDetails',
+                cache: false
+            });
+        }
+
+    }])
+    .controller("customerPolicyController", ['$scope', 'lookupService', 'fundService', function ($scope, lookupService, fundService) {
 
 
         $scope.Menu = lookupService.GetMenuOption();
+
 
         $scope.MenuItem = {
             MenuSelectedIndex: 0,
@@ -35,11 +50,35 @@
                 MenuSelectedIndex: index,
                 MenuIncludeFileName: menu.IncludeFile
             }
-        }
-    })
-    .controller("customerFundInformation", function ($scope, lookupService) {
+        };
 
 
-    })
+    }])
+        .controller('FundController', ['fundService', '$scope', function (fundService, $scope) {
+            $scope.showLoading = true;
+            $scope.Fund = [];
+
+            $scope.GetFundDetails = function () {
+                fundService
+                    .GetFundDetails()
+                    .success(function (_result) {
+                        $scope.Fund = _result;
+                        $scope.showLoading = false;
+                        //console.log($scope.Fund);
+                    })
+                    .error(function (_error) {
+                        console.log(_error);
+                    })
+            };
+
+            $scope.Init = function () {
+                $scope.GetFundDetails();
+            };
+            $scope.Init();
+        }])
+    .controller("customerFundInformation", ['$scope', 'lookupService', function ($scope, lookupService) {
+
+
+    }]);
 
 })();

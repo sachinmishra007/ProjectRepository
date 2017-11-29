@@ -141,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\CustomerController.cs" />
+    <Compile Include="Api\FundDetailsController.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AzureCosmosDBController.cs" />

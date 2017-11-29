@@ -11,14 +11,17 @@ namespace MVCBsuinessEntities
     {
         [JsonProperty(PropertyName = "FundCode")]
         public string FundCode { get; set; }
+
         [JsonProperty(PropertyName = "FundName")]
         public string FundName { get; set; }
+
         [JsonProperty(PropertyName = "AllowedFundPercentageAllocation")]
         public double? AllowedFundPercentageAllocation { get; set; }
 
         [JsonProperty(PropertyName = "id")]
         public string id{ get; set; }
-        [JsonProperty(PropertyName = "id")]
+
+        [JsonProperty(PropertyName = "_self")]
         public string _self { get; set; }
     }
 }
