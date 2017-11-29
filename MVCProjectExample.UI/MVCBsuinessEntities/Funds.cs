@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MVCBsuinessEntities
 {
-    public class Funds 
+    public class Funds  
     {
         [JsonProperty(PropertyName = "FundCode")]
         public string FundCode { get; set; }

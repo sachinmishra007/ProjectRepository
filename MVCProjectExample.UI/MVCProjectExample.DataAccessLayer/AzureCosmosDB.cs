@@ -12,7 +12,7 @@ using MVCBsuinessEntities;
 namespace MVCProjectExample.DataAccessLayer
 {
     public class AzureCosmosDB<T>
-    {
+    { 
         private readonly string _cosmosdbEndpointUrl = ConfigurationManager.AppSettings["CosmosDBEndpointKey"];
         private readonly string _cosmosDBPrimaryPassword = ConfigurationManager.AppSettings["CosmosDBPrimaryPassword"];
         private readonly string _cosmosdbName = ConfigurationManager.AppSettings["CosmosDBName"];
