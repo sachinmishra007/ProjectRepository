@@ -36,7 +36,7 @@
         }
 
     }])
-    .controller("customerPolicyController", ['$scope', 'lookupService', 'fundService', function ($scope, lookupService, fundService) {
+    .controller("customerPolicyController", ['$scope', 'lookupService', 'fundService', 'ApplicationSetting', function ($scope, lookupService, fundService, ApplicationSetting) {
 
 
         $scope.Menu = lookupService.GetMenuOption();
@@ -44,7 +44,7 @@
 
         $scope.MenuItem = {
             MenuSelectedIndex: 0,
-            MenuIncludeFileName: "/MVCProjectExample.UI/Partials/CustomerPolicy/Funds.html"
+            MenuIncludeFileName: ApplicationSetting.PageUrl + "Partials/CustomerPolicy/Funds.html"
         };
 
         $scope.SelectedOption = function (index, menu) {
