@@ -3,24 +3,26 @@
     "use stritc";
     angular.module("customerPolicyApp", [])
     .constant('ApplicationSetting', {
-        //URL: 'http://localhost/MVCProjectExample.UI/'
-        URL: 'http://sachinmishra007.azurewebsites.net/'
+
+        URL: 'http://sachinmishra007.azurewebsites.net/',
+        PageUrl: '/'
+        //PageUrl: '/MVCProjectExample.UI/'
     })
-    .service('lookupService', ['$http', function ($http) {
+    .service('lookupService', ['$http','ApplicationSetting', function ($http, ApplicationSetting) {
 
         this.GetMenuOption = function () {
             return [{
                 MenuName: 'Funds',
                 MenuClassName: 'list-group-item',
-                IncludeFile: "'/MVCProjectExample.UI/Partials/CustomerPolicy/Funds.html'"
+                IncludeFile: ApplicationSetting.PageUrl + "Partials/CustomerPolicy/Funds.html"
             }, {
                 MenuName: 'Customer',
                 MenuClassName: 'list-group-item',
-                IncludeFile: '/MVCProjectExample.UI/Partials/CustomerPolicy/Customer.html'
+                IncludeFile: ApplicationSetting.PageUrl + "Partials/CustomerPolicy/Customer.html"
             }, {
                 MenuName: 'Nominee',
                 MenuClassName: 'list-group-item',
-                IncludeFile: '/MVCProjectExample.UI/Partials/CustomerPolicy/Nominee.html'
+                IncludeFile: ApplicationSetting.PageUrl + "Partials/CustomerPolicy/Nominee.html"
             }]
         };
     }])
@@ -42,7 +44,7 @@
 
         $scope.MenuItem = {
             MenuSelectedIndex: 0,
-            MenuIncludeFileName: "'/MVCProjectExample.UI/Partials/CustomerPolicy/Funds.html'"
+            MenuIncludeFileName: "/MVCProjectExample.UI/Partials/CustomerPolicy/Funds.html"
         };
 
         $scope.SelectedOption = function (index, menu) {
