@@ -1,0 +1,31 @@
+﻿<div data-backdrop="false" data-keyboard="false" id="{{divid}}" class="modal fade" role="dialog">
+    <!--<h2>Hello World</h2>
+    <button ng-click="action">
+        Click Me
+    </button>-->
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{modaltext.Header}}</h4>
+            </div>
+
+            <div class="modal-body">
+                <b>{{modaltext.Message}}</b>
+            </div> 
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-show="modaltext.btnTitle!=''" ng-click="action(param)">
+                    {{modaltext.btnTitle}}
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
