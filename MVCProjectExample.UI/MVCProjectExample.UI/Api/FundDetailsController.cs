@@ -25,5 +25,30 @@ namespace MVCProjectExample.UI.Api
         {
             return Ok((await new AzureCosmosDB<Funds>().Init(CollectionName.Funds)).GetFundDocuments());
         }
+
+        [HttpPost]
+        [Route("DeleteFundDetails")]
+        public async Task<IHttpActionResult> DeleteFund([FromBody]MVCBsuinessEntities.Funds _fundDetails)
+        {
+            (await new AzureCosmosDB<Funds>().Init(CollectionName.Funds)).DeleteFundDetails(_fundDetails);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("InsertFundDetails")]
+        public async Task<IHttpActionResult> InsertFundDetails([FromBody]MVCBsuinessEntities.Funds _fundDetails)
+        {
+            (await new AzureCosmosDB<Funds>().Init(CollectionName.Funds)).InsertFundDocuments(_fundDetails);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("UpdateFundDetails")]
+        public async Task<IHttpActionResult> UpdateFunds([FromBody]MVCBsuinessEntities.Funds _fundDetails)
+        {
+            (await new AzureCosmosDB<Funds>().Init(CollectionName.Funds)).UpdateFundDetails(_fundDetails);
+            return Ok();
+        }
+
     }
 }

@@ -1,25 +1,34 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+
 namespace MVCBsuinessEntities
 {
-    public class Customer
+    public class CustomerAddress
     {
-       
 
-        public string CustomerId { get; set; }
-        public string CompanyName { get; set; }
-        public string ContactName { get; set; }
-        public string ContactTitle { get; set; }
+        [JsonProperty(PropertyName = "Address")]
         public string Address { get; set; }
+
+        [JsonProperty(PropertyName = "City")]
         public string City { get; set; }
+
+        [JsonProperty(PropertyName = "Region")]
         public string Region { get; set; }
+
+        [JsonProperty(PropertyName = "PostalCode")]
         public string PostalCode { get; set; }
+
+        [JsonProperty(PropertyName = "Country")]
         public string Country { get; set; }
+
+        [JsonProperty(PropertyName = "Phone")]
         public string Phone { get; set; }
+
+        [JsonProperty(PropertyName = "Fax")]
         public string Fax { get; set; }
     }
 }

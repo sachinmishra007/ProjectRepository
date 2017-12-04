@@ -1,11 +1,11 @@
 ﻿<div ng-controller="FundController">
-    
+
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h2 class="panel-title">Funds</h2>
             </div>
-            <div class="panel-body"> 
+            <div class="panel-body">
                 <div class="form-group">
                     <div class="col-md-4">
                         <label>Fund Name</label>
@@ -23,7 +23,7 @@
                 <div>
                     <div class="col-md-3">
                         <br />
-                        <input type="button" class="btn btn-block btn-danger" value="Save" />
+                        <input ng-disabled="btnTitle!='Save'" type="button" class="btn btn-block btn-danger" value="{{btnTitle}}" ng-click="InsertFundDetails(funds)" />
                     </div>
                 </div>
             </div>
@@ -33,8 +33,8 @@
             <div class="panel-heading">
                 <h2 class="panel-title">Funds</h2>
             </div>
-            
-            <div class="panel-body"  >
+
+            <div class="panel-body">
                 <div class="spinner" ng-if="showLoading">
                     <div class="rect1"></div>
                     <div class="rect2"></div>
@@ -42,7 +42,17 @@
                     <div class="rect4"></div>
                     <div class="rect5"></div>
                 </div>
-                <table ng-if="!showLoading" class="table table-bordered table-condensed table-hover table-responsive table-striped">
+                <div class="noRecordFound" ng-if="!showLoading && Fund.length<=0">
+                    No Record Found !
+                </div>
+                <table ng-if="!showLoading && Fund.length > 0" class="table table-bordered table-condensed table-hover table-responsive table-striped">
+                    <tr>
+                        <td colspan="5">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" placeholder="Please type Fund Name" ng-model="SearchfundName" />
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <td>Fund Name</td>
                         <td>Fund Code</td>
@@ -51,16 +61,40 @@
                             Action
                         </td>
                     </tr>
-                    <tr ng-repeat="fu in Fund | orderBy:$index">
-                        <td>{{fu.FundName}}</td>
-                        <td>{{fu.FundCode}}</td>
-                        <td>{{fu.AllowedFundPercentageAllocation}}</td>
-                        <td class="handCursor"  align="center">
-                            <span class="glyphicon glyphicon-edit"></span>                            
+                    <tr ng-repeat="fu in Fund | orderBy:$index | filter :SearchfundName">
+                        <td>
+                            <span ng-if="EditModeIndex!=$index">
+                                {{fu.FundName}}
+                            </span>
+
+                            <span ng-if="EditModeIndex==$index">
+                                <input type="text" placeholder="Fund Name" ng-model="fundDetails.FundName" class="form-control" />
+                            </span>
                         </td>
-                        <td class="handCursor" align="center">
+                        <td>
+                            <span ng-if="EditModeIndex!=$index">
+                                {{fu.FundCode}}
+                            </span>
+                            <span ng-if="EditModeIndex==$index">
+                                <input type="text" placeholder="Fund Code" ng-model="fundDetails.FundCode" class="form-control" />
+                            </span>
+                        </td>
+                        <td>
+                            <span ng-if="EditModeIndex!=$index">
+                                {{fu.AllowedFundPercentageAllocation}}
+                            </span>
+                            <span ng-if="EditModeIndex==$index">
+                                <input type="text" placeholder="Allowed Percentage Allocation" ng-model="fundDetails.AllowedFundPercentageAllocation" class="form-control" />
+                            </span>
+                        </td>
+                        <td class="handCursor" align="center" ng-click="EditFund('object1',fu,$index)">
+                            <span ng-if="EditModeIndex!=$index" class="glyphicon glyphicon-edit"></span>
+                            <span ng-click="ClickOnCancelBtn(fu,$index)" ng-if="EditModeIndex==$index" class="glyphicon glyphicon-ok"></span>
+                        </td>
+                        <td class="handCursor" align="center" ng-click="delete('object1',fu)">
                             <span class="glyphicon glyphicon-remove-circle"></span>
                         </td>
+                        <notification-Display divid="object1" action="ClickOnFund(selectedFund)" modaltext="modalDisplay"></notification-Display>
                     </tr>
                 </table>
             </div>

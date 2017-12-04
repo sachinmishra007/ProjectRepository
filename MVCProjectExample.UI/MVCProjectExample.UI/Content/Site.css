@@ -94,3 +94,14 @@ textarea {
 .handCursor {
     cursor: pointer;
 }
+
+.noRecordFound {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: crimson;
+}
+
+.btn.btn-danger[disabled] {
+    cursor: no-drop;
+}
