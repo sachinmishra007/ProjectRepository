@@ -8,6 +8,7 @@ using Microsoft.Azure.Documents.Linq;
 using System.Threading.Tasks;
 using System.Linq;
 using MVCBsuinessEntities;
+using Newtonsoft.Json;
 
 namespace MVCProjectExample.DataAccessLayer
 {
@@ -90,12 +91,12 @@ namespace MVCProjectExample.DataAccessLayer
                 }).ToList<Funds>();
         }
 
-        public async void DeleteFundDetails(Funds _fundDetails)
+        public async void DeleteFundDetails(T _fundDetails)
         {
             try
             {
                 Document _foundFunds = _client.CreateDocumentQuery<Document>(_collection.DocumentsLink)
-                                      .Where(d => d.Id == _fundDetails.id).AsEnumerable().FirstOrDefault();
+                                      .Where(d => d.Id == (_fundDetails as Funds).id).AsEnumerable().FirstOrDefault();
 
                 _client.DeleteDocumentAsync(_foundFunds.SelfLink).Wait();
             }
@@ -123,6 +124,28 @@ namespace MVCProjectExample.DataAccessLayer
 
             }
 
+        }
+
+
+        public void InsertCustomerDetails(T _CustomerFundDetails)
+        {
+            _client.CreateDocumentAsync(_collection.DocumentsLink, _CustomerFundDetails).Wait();
+        }
+
+        public List<CustomerDetails> GetCustomerDetailsDocuments()
+        {
+            return _client.CreateDocumentQuery(_collection.DocumentsLink, "SELECT * FROM Customer")
+                .AsEnumerable().Select(data => new CustomerDetails()
+                {
+
+                    CompanyName = data.CompanyName,
+                    ContactName = data.ContactName,
+                    ContactTitle = data.ContactTitle,
+                    CustomerId = data.CustomerId,
+                    addressDetails = JsonConvert.DeserializeObject<List<CustomerAddress>>(Convert.ToString(data.addressDetails)),
+                    id = data.id,
+                    _self = data._self
+                }).ToList<CustomerDetails>();
         }
     }
 }

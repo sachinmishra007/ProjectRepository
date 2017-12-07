@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MVCBsuinessEntities;
+using MVCProjectExample.Common;
+using MVCProjectExample.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -20,7 +23,16 @@ namespace MVCProjectExample.UI.Api
         [Route("InsertCustomerDetails")]
         public async Task<IHttpActionResult> InsertCustomerDetails([FromBody]MVCBsuinessEntities.CustomerDetails _customerDetails)
         {
+            (await new AzureCosmosDB<CustomerDetails>().Init(CollectionName.Customer)).InsertCustomerDetails(_customerDetails);
             return Ok();
+        }
+
+
+        [HttpGet]
+        [Route("GetCustomerDetails")]
+        public async Task<IHttpActionResult> Get()
+        {
+            return Ok((await new AzureCosmosDB<CustomerDetails>().Init(CollectionName.Customer)).GetCustomerDetailsDocuments());
         }
     }
 }

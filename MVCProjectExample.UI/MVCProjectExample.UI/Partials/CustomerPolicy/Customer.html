@@ -1,7 +1,44 @@
 ﻿<div ng-controller="customerController">
-    <div class="panel panel-primary">
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-default" ng-click="Display=2">
+            <span class="glyphicon glyphicon-eye-open "></span> View Customer
+        </button>
+        <button type="button" class="btn btn-default" ng-click="Display=1">
+            <span class="glyphicon glyphicon-plus-sign "></span>
+            Add Customer
+        </button>
+    </div>
+    <br />
+    <br />
+    <div class="panel panel-primary" ng-if="Display==2">
         <div class="panel-heading">
-            <h2 class="panel-title">Customer </h2>
+            <h2 class="panel-title">View Customer</h2>
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered table-condensed table-hover table-responsive table-striped ">
+                <tr>
+                    <td>+</td>
+                    <td>Customer Id</td>
+                    <td>Customer Name</td>
+                    <td>Contact Name </td>
+                    <td>Contact Details</td>
+                </tr>
+                <tr ng-repeat="cusde in CustomerDetails">
+                    <td>{{cusde.CustomerId}}</td>
+                    <td>{{cusde.CustomerName}}</td>
+                    <td>{{cusde.ContactName}} </td>
+                    <td>{{cusde.ContactDetails}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <br />
+    <!-- Input Area Display=1 then Add Customer -->
+    <div class="panel panel-primary" ng-if="Display==1">
+        <div class="panel-heading">
+            <h2 class="panel-title">Customers </h2>
         </div>
         <div class="panel-body">
             <form class="form-horizontal">
@@ -108,7 +145,7 @@
                                 <td></td>
                                 <td></td>
                             </tr>
-                            <tr  >
+                            <tr>
                                 <td>Address</td>
                                 <td>City</td>
                                 <td>Region</td>
@@ -125,16 +162,16 @@
                                 <td>{{add.Country}}</td>
                                 <td>{{add.Phone}}</td>
                                 <td>{{add.Fax}}</td>
+                                <notification-Display divid="object1" action="ClickOnFund(selectedFund)" modaltext="modalDisplay"></notification-Display>
                             </tr>
                         </table>
                     </div>
                     <div class="col-md-12">
-                        <input type="button" class="btn btn-block btn-primary" value="Save" ng-click="SaveCustomerDetails(customer)"/>
+                        <input ng-disabled="btnTitle != 'Save'" type="button" class="btn btn-block btn-primary" value="{{btnTitle}}" ng-click="SaveCustomerDetails(customer)" />
                     </div>
                 </div>
 
             </form>
         </div>
-
     </div>
 </div>

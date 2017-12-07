@@ -4,10 +4,10 @@
     angular.module("customerPolicyApp", [])
     .constant('ApplicationSetting', {
 
-        URL: 'http://sachinmishra007.azurewebsites.net/',
-        //URL: 'http://localhost/MVCProjectExample.UI/',
-        PageUrl: '/'
-        //PageUrl: '/MVCProjectExample.UI/'
+        //URL: 'http://sachinmishra007.azurewebsites.net/',
+        URL: 'http://localhost/MVCProjectExample.UI/',
+        //PageUrl: '/'
+        PageUrl: '/MVCProjectExample.UI/'
     })
     .directive('notificationDisplay', ['ApplicationSetting', function (ApplicationSetting) {
         return {
@@ -91,6 +91,15 @@
                     cache: false
                 });
             }
+
+            this.GetCustomerDetails = function () {
+                return $http({
+                    method: 'GET',
+                    url: ApplicationSetting.URL + 'api/CustomerDetails/GetCustomerDetails',
+                    cache: false
+                });
+            }
+
         }])
     .controller("customerPolicyController", ['$scope', 'lookupService', 'fundService', 'ApplicationSetting',
         function ($scope, lookupService, fundService, ApplicationSetting) {
@@ -250,8 +259,9 @@
             }])
          .controller('customerController', ['$scope', 'ApplicationSetting', 'customerDetailsService',
              function ($scope, ApplicationSetting, customerDetailsService) {
-
-                 $scope.customer = { 
+                 $scope.btnTitle = 'Save';
+                 $scope.CustomerDetails = [];
+                 $scope.customer = {
                      addressDetails: []
                  };
                  $scope.ClickOnCustomer = function (param) {
@@ -264,16 +274,54 @@
                  }
 
                  $scope.SaveCustomerDetails = function (customer) {
+                     $scope.btnTitle = 'Please Wait ! Saving......';
                      customerDetailsService
                             .InsertCustomerDetails(customer)
                             .success(function (_result) {
+                                $('#object1').modal('hide');
+                                $scope.selectedFund = {};
+                                $scope.ShowDialog('object1', {
+                                    Header: 'Funds',
+                                    Message: 'Record Inserted successfully !',
+                                    btnTitle: ''
+                                });
 
+                                $scope.btnTitle = 'Save';
+                                $scope.funds = {};
                             })
                             .error(function (_error) {
 
                             });
                  }
 
+                 $scope.GetCustomerDetails = function () {
+
+                     customerDetailsService
+                         .GetCustomerDetails()
+                         .success(function (_result) {
+                             $scope.CustomerDetails = _result;
+                             console.log($scope.CustomerDetails);
+                         })
+                        .error(function (_error) {
+
+
+                        })
+                 }
+
+                 $scope.ShowDialog = function (objectName, message) {
+                     $scope.modalDisplay = {
+                         Header: message.Header || 'Funds',
+                         Message: message.Message || 'Do you really want to delete the record ? ',
+                         btnTitle: message.btnTitle || ''
+                     };
+                     $('#' + objectName).modal('show');
+                 }
+
+                 $scope.Init = function () {
+                     $scope.GetCustomerDetails();
+                 }
+
+                 $scope.Init();
              }])
          .controller("customerFundInformation", ['$scope', 'lookupService',
 function ($scope, lookupService) {
