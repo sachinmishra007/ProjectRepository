@@ -98,7 +98,7 @@ namespace MVCProjectExample.DataAccessLayer
                 Document _foundFunds = _client.CreateDocumentQuery<Document>(_collection.DocumentsLink)
                                       .Where(d => d.Id == (_fundDetails as Funds).id).AsEnumerable().FirstOrDefault();
 
-                _client.DeleteDocumentAsync(_foundFunds.SelfLink).Wait();
+                await _client.DeleteDocumentAsync(_foundFunds.SelfLink);
             }
             catch (Exception ex)
             {
@@ -126,7 +126,6 @@ namespace MVCProjectExample.DataAccessLayer
 
         }
 
-
         public void InsertCustomerDetails(T _CustomerFundDetails)
         {
             _client.CreateDocumentAsync(_collection.DocumentsLink, _CustomerFundDetails).Wait();
@@ -144,8 +143,25 @@ namespace MVCProjectExample.DataAccessLayer
                     CustomerId = data.CustomerId,
                     addressDetails = JsonConvert.DeserializeObject<List<CustomerAddress>>(Convert.ToString(data.addressDetails)),
                     id = data.id,
-                    _self = data._self
+                    _self = data._self,
+                    SelectedOption = true
                 }).ToList<CustomerDetails>();
+        }
+
+
+        public async void DeleteCustomerDetails(T _customerDetails)
+        {
+            try
+            {
+                Document _foundCustomer = _client.CreateDocumentQuery<Document>(_collection.DocumentsLink)
+                                            .Where(d => d.Id == (_customerDetails as CustomerDetails).id).AsEnumerable().FirstOrDefault();
+
+                await _client.DeleteDocumentAsync(_foundCustomer.SelfLink);
+            }
+            catch (Exception ex)
+            {
+            }
+
         }
     }
 }

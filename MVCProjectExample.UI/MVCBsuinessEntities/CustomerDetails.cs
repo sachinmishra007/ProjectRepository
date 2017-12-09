@@ -24,7 +24,8 @@ namespace MVCBsuinessEntities
         [JsonProperty(PropertyName = "addressDetails")]
         public List<CustomerAddress> addressDetails { get; set; }
 
-        public string _strAddressDetails { get; set; }
+        [JsonProperty(PropertyName = "SelectedOption")]
+        public bool SelectedOption { get; set; }
 
         [JsonProperty(PropertyName = "id")]
         public string id { get; set; }

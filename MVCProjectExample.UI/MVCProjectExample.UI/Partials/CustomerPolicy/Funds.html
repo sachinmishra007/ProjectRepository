@@ -29,22 +29,14 @@
             </div>
         </div>
 
-        <div class="panel-primary">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h2 class="panel-title">Funds</h2>
             </div>
 
             <div class="panel-body">
-                <div class="spinner" ng-if="showLoading">
-                    <div class="rect1"></div>
-                    <div class="rect2"></div>
-                    <div class="rect3"></div>
-                    <div class="rect4"></div>
-                    <div class="rect5"></div>
-                </div>
-                <div class="noRecordFound" ng-if="!showLoading && Fund.length<=0">
-                    No Record Found !
-                </div>
+                <loader show-Loading="showLoading" array-Length="Fund.length"></loader>
+
                 <table ng-if="!showLoading && Fund.length > 0" class="table table-bordered table-condensed table-hover table-responsive table-striped">
                     <tr>
                         <td colspan="5">

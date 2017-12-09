@@ -1,4 +1,4 @@
-﻿<div ng-controller="customerController">
+﻿<div ng-controller="customerController" ng-init="Display=2">
 
     <div class="btn-group">
         <button type="button" class="btn btn-default" ng-click="Display=2">
@@ -16,25 +16,61 @@
             <h2 class="panel-title">View Customer</h2>
         </div>
         <div class="panel-body">
-            <table class="table table-bordered table-condensed table-hover table-responsive table-striped ">
+            <loader show-Loading="showLoading" array-Length="CustomerDetails.length"></loader>
+
+            <table ng-if="!showLoading && CustomerDetails.length > 0" class="table table-bordered table-condensed table-hover table-responsive table-striped ">
                 <tr>
-                    <td>+</td>
-                    <td>Customer Id</td>
-                    <td>Customer Name</td>
-                    <td>Contact Name </td>
-                    <td>Contact Details</td>
+                    <td colspan="2"><b> Customer Id</b></td>
+                    <td><b> Customer Name</b></td>
+                    <td><b>Contact Name</b> </td>
+                    <td><b>Contact Details</b></td>
+                    <td align="center"><b>Action</b></td>
                 </tr>
-                <tr ng-repeat="cusde in CustomerDetails">
-                    <td>{{cusde.CustomerId}}</td>
-                    <td>{{cusde.CustomerName}}</td>
-                    <td>{{cusde.ContactName}} </td>
-                    <td>{{cusde.ContactDetails}}</td>
-                </tr>
+                <tbody ng-repeat="cusde in CustomerDetails">
+
+                    <tr>
+                        <td style="cursor:pointer" align="center">
+                            <span ng-click="cusde.SelectedOption=false" ng-if="cusde.SelectedOption" class="glyphicon glyphicon-plus"></span>
+                            <span ng-click="cusde.SelectedOption=true" ng-if="!cusde.SelectedOption" class="glyphicon glyphicon-remove"></span>
+                        </td>
+                        <td>{{cusde.CustomerId}}</td>
+                        <td>{{cusde.CompanyName}}</td>
+                        <td>{{cusde.ContactName}} </td>
+                        <td>{{cusde.ContactTitle}}</td>
+                        <td align="center"><span class="glyphicon glyphicon-remove-circle" ng-click="deleteCustomer(cusde)"></span></td>
+                    </tr>
+                    <tr ng-if="!cusde.SelectedOption">
+                        <td></td>
+                        <td colspan="5">
+                            <table class="table table-bordered table-condensed table-hover table-responsive table-striped ">
+                                <tr>
+                                    <td><b>Address</b></td>
+                                    <td><b>Cit</b>y</td>
+                                    <td><b>Country</b></td>
+                                    <td><b>Fax</b></td>
+                                    <td><b>Phone</b></td>
+                                    <td><b>PostalCode</b></td>
+                                    <td><b>Region</b></td>
+                                </tr>
+                                <tr ng-repeat="cusadd in cusde.addressDetails">
+                                    <td>{{cusadd.Address}}</td>
+                                    <td>{{cusadd.City}}</td>
+                                    <td>{{cusadd.Country}}</td>
+                                    <td>{{cusadd.Fax}}</td>
+                                    <td>{{cusadd.Phone}}</td>
+                                    <td>{{cusadd.PostalCode}}</td>
+                                    <td>{{cusadd.Region}}</td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
     <br />
-    <br />
+    <notification-Display divid="object2" action="ClickOnCustomer()" modaltext="modalDisplay"></notification-Display>
     <!-- Input Area Display=1 then Add Customer -->
     <div class="panel panel-primary" ng-if="Display==1">
         <div class="panel-heading">
@@ -45,25 +81,25 @@
                 <div class="form-group">
                     <div class="col-md-4">
                         <label>
-                            Customer Id
+                            <b>Customer Id</b>
                         </label>
                         <input type="text" placeholder="Customer Id" class="form-control" ng-model="customer.CustomerId" />
                     </div>
                     <div class="col-md-4">
                         <label>
-                            Company Name
+                            <b>  Company Name</b>
                         </label>
                         <input type="text" placeholder="Customer Name" class="form-control" ng-model="customer.CompanyName" />
                     </div>
                     <div class="col-md-4">
                         <label>
-                            Contact Name
+                            <b> Contact Name</b>
                         </label>
                         <input type="text" placeholder="Contact Name" class="form-control" ng-model="customer.ContactName" />
                     </div>
                     <div class="col-md-4">
                         <label>
-                            Contact Title
+                            <b>Contact Title</b>
                         </label>
                         <input type="text" placeholder="Contact Title" class="form-control" ng-model="customer.ContactTitle" />
                     </div>
@@ -72,31 +108,31 @@
                 <lbale>*Add Multiple Address</lbale>
                 <div class="form-group">
                     <div class="col-md-4">
-                        <label>Address</label>
+                        <label><b>Address</b></label>
                         <input type="text" class="form-control" placeholder="Address" ng-model="addressDetails.Address" />
                     </div>
                     <div class="col-md-4">
-                        <label>City</label>
+                        <label><b>City</b></label>
                         <input type="text" class="form-control" placeholder="Address" ng-model="addressDetails.City" />
                     </div>
                     <div class="col-md-4">
-                        <label>Region</label>
+                        <label><b>Region</b></label>
                         <input type="text" class="form-control" placeholder="Address" ng-model="addressDetails.Region" />
                     </div>
                     <div class="col-md-4">
-                        <label>PostalCode</label>
+                        <label><b>PostalCode</b></label>
                         <input type="text" class="form-control" placeholder="Postal Code" ng-model="addressDetails.PostalCode" />
                     </div>
                     <div class="col-md-4">
-                        <label>Country</label>
+                        <label><b>Country</b></label>
                         <input type="text" class="form-control" placeholder="Country" ng-model="addressDetails.Country" />
                     </div>
                     <div class="col-md-4">
-                        <label>Phone</label>
+                        <label><b>Phone</b></label>
                         <input type="text" class="form-control" placeholder="Phone" ng-model="addressDetails.Phone" />
                     </div>
                     <div class="col-md-4">
-                        <label>Fax</label>
+                        <label><b>Fax</b></label>
                         <input type="text" class="form-control" placeholder="Fax" ng-model="addressDetails.Fax" />
                     </div>
                     <div class="col-md-4">
@@ -154,7 +190,7 @@
                                 <td>Phone</td>
                                 <td>Fax</td>
                             </tr>
-                            <tr ng-repeat=" add in customer.addressDetails">
+                            <tr ng-repeat=" add in customer.addressDetails track by $index">
                                 <td>{{add.Address}}</td>
                                 <td>{{add.City}}</td>
                                 <td>{{add.Region}}</td>
@@ -167,6 +203,7 @@
                         </table>
                     </div>
                     <div class="col-md-12">
+                       
                         <input ng-disabled="btnTitle != 'Save'" type="button" class="btn btn-block btn-primary" value="{{btnTitle}}" ng-click="SaveCustomerDetails(customer)" />
                     </div>
                 </div>

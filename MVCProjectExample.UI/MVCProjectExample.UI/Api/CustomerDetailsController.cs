@@ -34,5 +34,13 @@ namespace MVCProjectExample.UI.Api
         {
             return Ok((await new AzureCosmosDB<CustomerDetails>().Init(CollectionName.Customer)).GetCustomerDetailsDocuments());
         }
+
+        [HttpPost]
+        [Route("DeleteCustomerDetails")]
+        public async Task<IHttpActionResult> Delete(MVCBsuinessEntities.CustomerDetails _customerDetails)
+        {
+            (await new AzureCosmosDB<CustomerDetails>().Init(CollectionName.Customer)).DeleteCustomerDetails(_customerDetails);
+            return Ok();
+        }
     }
 }

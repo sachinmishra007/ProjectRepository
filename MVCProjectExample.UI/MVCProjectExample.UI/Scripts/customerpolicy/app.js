@@ -4,11 +4,26 @@
     angular.module("customerPolicyApp", [])
     .constant('ApplicationSetting', {
 
-        //URL: 'http://sachinmishra007.azurewebsites.net/',
-        URL: 'http://localhost/MVCProjectExample.UI/',
-        //PageUrl: '/'
-        PageUrl: '/MVCProjectExample.UI/'
+        URL: 'http://sachinmishra007.azurewebsites.net/',
+        //URL: 'http://localhost/MVCProjectExample.UI/',
+        PageUrl: '/'
+        //PageUrl: '/MVCProjectExample.UI/'
     })
+    .directive('loader', ['ApplicationSetting', function (ApplicationSetting) {
+        return {
+            restrict: 'EA',
+            transclude: false,
+            replace: false,
+            scope: {
+                showLoading: '=',
+                arrayLength: '='
+            },
+            templateUrl: ApplicationSetting.PageUrl + 'Partials/CustomDirective/Loader.html',
+            link: function (scope, element, attrs, controller) {
+
+            }
+        };
+    }])
     .directive('notificationDisplay', ['ApplicationSetting', function (ApplicationSetting) {
         return {
             restrict: 'EA',
@@ -100,6 +115,15 @@
                 });
             }
 
+            this.DeleteCustomerDetails = function (customerDetails) {
+                return $http({
+                    method: 'POST',
+                    data: customerDetails,
+                    url: ApplicationSetting.URL + 'api/CustomerDetails/DeleteCustomerDetails',
+                    cache: false
+                });
+            }
+
         }])
     .controller("customerPolicyController", ['$scope', 'lookupService', 'fundService', 'ApplicationSetting',
         function ($scope, lookupService, fundService, ApplicationSetting) {
@@ -143,6 +167,7 @@
                         .success(function (_result) {
                             $scope.Fund = _result;
                             $scope.showLoading = false;
+                            //$scope.Fund = [];
                             //console.log($scope.Fund);
                         })
                         .error(function (_error) {
@@ -259,6 +284,7 @@
             }])
          .controller('customerController', ['$scope', 'ApplicationSetting', 'customerDetailsService',
              function ($scope, ApplicationSetting, customerDetailsService) {
+                 $scope.showLoading = false;
                  $scope.btnTitle = 'Save';
                  $scope.CustomerDetails = [];
                  $scope.customer = {
@@ -270,7 +296,7 @@
 
                  $scope.AddAddress = function (addressDetails) {
                      $scope.customer.addressDetails.push(addressDetails);
-                     $scope.addressDetails = {};
+                     $scope.addressDetails = [];
                  }
 
                  $scope.SaveCustomerDetails = function (customer) {
@@ -278,16 +304,18 @@
                      customerDetailsService
                             .InsertCustomerDetails(customer)
                             .success(function (_result) {
-                                $('#object1').modal('hide');
+                                $('#object2').modal('hide');
                                 $scope.selectedFund = {};
-                                $scope.ShowDialog('object1', {
-                                    Header: 'Funds',
+                                $scope.ShowDialog('object2', {
+                                    Header: 'Customer',
                                     Message: 'Record Inserted successfully !',
                                     btnTitle: ''
                                 });
 
                                 $scope.btnTitle = 'Save';
                                 $scope.funds = {};
+                                $scope.Display = 2;
+                                $scope.GetCustomerDetails();
                             })
                             .error(function (_error) {
 
@@ -295,12 +323,13 @@
                  }
 
                  $scope.GetCustomerDetails = function () {
-
+                     $scope.showLoading = true;
                      customerDetailsService
                          .GetCustomerDetails()
                          .success(function (_result) {
                              $scope.CustomerDetails = _result;
-                             console.log($scope.CustomerDetails);
+                             $scope.showLoading = false;
+                             // $scope.CustomerDetails = [];
                          })
                         .error(function (_error) {
 
@@ -309,8 +338,9 @@
                  }
 
                  $scope.ShowDialog = function (objectName, message) {
+
                      $scope.modalDisplay = {
-                         Header: message.Header || 'Funds',
+                         Header: message.Header || 'Customer',
                          Message: message.Message || 'Do you really want to delete the record ? ',
                          btnTitle: message.btnTitle || ''
                      };
@@ -319,6 +349,36 @@
 
                  $scope.Init = function () {
                      $scope.GetCustomerDetails();
+                 }
+
+
+                 $scope.deleteCustomer = function (customer) {
+                     $scope.deleteCustomerRecord = customer;
+                     $scope.ShowDialog('object2', {
+                         Header: 'Customer',
+                         Message: 'Do you really want to delete the Record  ? ',
+                         btnTitle: 'Yes'
+                     });
+                 };
+
+                 $scope.ClickOnCustomer = function () {
+                     $('#object2').modal('hide');
+                     customerDetailsService
+                            .DeleteCustomerDetails($scope.deleteCustomerRecord)
+                            .success(function () {
+                                $scope.ShowDialog('object2', {
+                                    Header: 'Customer',
+                                    Message: 'Record deleted Successfully ! ',
+                                    btnTitle: ''
+                                });
+                                $scope.deleteCustomerRecord = {};
+
+                            })
+                            .error(function () {
+
+                                $scope.GetCustomerDetails();
+                            })
+
                  }
 
                  $scope.Init();

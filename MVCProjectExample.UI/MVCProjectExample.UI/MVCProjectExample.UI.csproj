@@ -117,6 +117,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Partials\CustomDirective\CustomDirective.html" />
+    <Content Include="Partials\CustomDirective\Loader.html" />
     <Content Include="Partials\CustomDirective\Notification.html" />
     <Content Include="Partials\CustomerPolicy\Nominee.html" />
     <Content Include="Partials\CustomerPolicy\Customer.html" />
