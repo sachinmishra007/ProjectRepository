@@ -6,7 +6,7 @@
 
         URL: 'http://sachinmishra007.azurewebsites.net/',
         //URL: 'http://localhost/MVCProjectExample.UI/',
-        PageUrl: '/'
+        PageUrl: '/' 
         //PageUrl: '/MVCProjectExample.UI/'
     })
     .directive('loader', ['ApplicationSetting', function (ApplicationSetting) {
