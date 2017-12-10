@@ -17,7 +17,7 @@
                     </div>
                     <div class="col-md-4">
                         <label>Allowed Perecentage Allocation</label>
-                        <input type="text" placeholder="Allowed Percentage Allocation" ng-model="funds.AllowedFundPercentageAllocation" class="form-control" />
+                        <input allow-Only-Numbers type="number" placeholder="Allowed Percentage Allocation" ng-model="funds.AllowedFundPercentageAllocation" class="form-control" />
                     </div>
                 </div>
                 <div>
@@ -76,7 +76,7 @@
                                 {{fu.AllowedFundPercentageAllocation}}
                             </span>
                             <span ng-if="EditModeIndex==$index">
-                                <input type="text" placeholder="Allowed Percentage Allocation" ng-model="fundDetails.AllowedFundPercentageAllocation" class="form-control" />
+                                <input type="number" allow-Only-Numbers placeholder="Allowed Percentage Allocation" ng-model="fundDetails.AllowedFundPercentageAllocation" class="form-control" />
                             </span>
                         </td>
                         <td class="handCursor" align="center" ng-click="EditFund('object1',fu,$index)">

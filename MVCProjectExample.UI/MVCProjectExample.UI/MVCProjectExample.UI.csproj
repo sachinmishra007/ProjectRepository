@@ -142,6 +142,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilter\CheckSessionTimeOutAttribute.cs" />
     <Compile Include="Api\CustomerController.cs" />
     <Compile Include="Api\CustomerDetailsController.cs" />
     <Compile Include="Api\FundDetailsController.cs" />

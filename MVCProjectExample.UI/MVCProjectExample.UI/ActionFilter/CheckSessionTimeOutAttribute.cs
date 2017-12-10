@@ -4,14 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using System.Web.Mvc;
 using System.Web.Security;
 
 namespace MVCProjectExample.UI.ActionFilter
 {
-    [AttributeUsage(AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
-    public class CheckSessionTimeOutAttribute : ActionFilterAttribute
+    [AttributeUsage(AttributeTargets.All, Inherited = true, AllowMultiple = false)]
+    public class CheckSessionTimeOutAttribute : System.Web.Mvc.ActionFilterAttribute
     {
-        public override void OnActionExecuting(HttpActionContext actionContext)
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var context = filterContext.HttpContext;
             if (context.Session != null)
