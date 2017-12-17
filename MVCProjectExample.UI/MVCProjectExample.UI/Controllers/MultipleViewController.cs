@@ -1,4 +1,6 @@
-﻿using MVCProjectExample.UI.DataAccessLayer;
+﻿using MVCProjectExample.BAL.Domain;
+using MVCProjectExample.UI.DataAccessLayer;
+using Ninject;
 using System.Web.Mvc;
 
 namespace MVCProjectExample.UI.Controllers
@@ -6,8 +8,10 @@ namespace MVCProjectExample.UI.Controllers
     public class MultipleViewController : Controller
     {
         private readonly DAL _dataAccessLayer = null;
-        public MultipleViewController()
+        private readonly INomineeDetails _nomineeDetails = null;
+        public MultipleViewController([Named("NomineeDetails")]INomineeDetails nomineeDetails)
         {
+            this._nomineeDetails = nomineeDetails;
             _dataAccessLayer = new DAL();
         }
         // GET: MultipleView
@@ -83,6 +87,11 @@ namespace MVCProjectExample.UI.Controllers
         public ActionResult CustomDirective()
         {
             return View();
+        }
+
+        public ActionResult CustomerNomineeDetails()
+        {
+            return View(this._nomineeDetails.GetCustomerNomineeDetails());
         }
     }
 }

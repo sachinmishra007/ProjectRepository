@@ -56,6 +56,22 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject, Version=3.3.3.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.3\lib\net45\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.3.0\lib\net45\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.WebHost, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.WebHost.3.3.0\lib\net45\Ninject.Web.Common.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.3.0\lib\net45\Ninject.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -73,6 +89,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -146,6 +166,7 @@
     <Compile Include="Api\CustomerController.cs" />
     <Compile Include="Api\CustomerDetailsController.cs" />
     <Compile Include="Api\FundDetailsController.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AzureCosmosDBController.cs" />
@@ -182,6 +203,8 @@
     <Content Include="Views\MultipleView\CustomDirective.cshtml" />
     <Content Include="Views\Home\ViewNorthWind.cshtml" />
     <Content Include="Views\AzureCosmosDB\Index.cshtml" />
+    <Content Include="Views\AzureCosmosDB\GetNomineeDetails.cshtml" />
+    <Content Include="Views\MultipleView\CustomerNomineeDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -198,6 +221,10 @@
     <ProjectReference Include="..\MVCBsuinessEntities\MVCBsuinessEntities.csproj">
       <Project>{343eb70a-6024-4c7d-b958-0f4488ca0d1f}</Project>
       <Name>MVCBsuinessEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCProjectExample.BAL\MVCProjectExample.BAL.csproj">
+      <Project>{b4772a65-e05d-4c68-bc52-758c12a1fad7}</Project>
+      <Name>MVCProjectExample.BAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\MVCProjectExample.Common\MVCProjectExample.Common.csproj">
       <Project>{947a3609-4d59-4973-833b-15881d635410}</Project>

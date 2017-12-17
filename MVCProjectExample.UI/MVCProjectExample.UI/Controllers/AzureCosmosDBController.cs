@@ -8,16 +8,18 @@ using System.Web.Mvc;
 using MVCProjectExample.Common;
 using System.Threading.Tasks;
 using MVCProjectExample.UI.ActionFilter;
+using MVCProjectExample.BAL.Domain;
+using Ninject;
 
 namespace MVCProjectExample.UI.Controllers
 {
      
     public class AzureCosmosDBController : Controller
     {
-
-        public AzureCosmosDBController()
+        private readonly INomineeDetails _nomineeDetails = null;
+        public AzureCosmosDBController([Named("NomineeCustomerSiblingDetails")]INomineeDetails nomineeDetails)
         {
-
+            this._nomineeDetails = nomineeDetails;
         }
 
 
@@ -43,5 +45,9 @@ namespace MVCProjectExample.UI.Controllers
             return Json((await new AzureCosmosDB<Funds>().Init(CollectionName.Funds)).GetFundDocuments(), JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetNomineeDetails()
+        {
+            return View(this._nomineeDetails.GetCustomerNomineeDetails());
+        }
     }
 }
