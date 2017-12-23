@@ -7,7 +7,7 @@
         //AppUrl: '/MVCProjectExample.UI/',
         //AppServiceUrl: 'http://localhost/MVCProjectExample.UI/'
         AppUrl: '/',
-        AppServiceUrl:'/'
+        AppServiceUrl: 'http://sachinmishra007.azurewebsites.net/'
     })
     .directive('showLoader', ['NomineeApplicationConstant', function (NomineeApplicationConstant) {
         return {
