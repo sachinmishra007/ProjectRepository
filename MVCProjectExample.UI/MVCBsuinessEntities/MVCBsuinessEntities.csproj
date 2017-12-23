@@ -47,6 +47,7 @@
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerDetails.cs" />
     <Compile Include="Funds.cs" />
+    <Compile Include="MessageEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
