@@ -53,11 +53,11 @@
                         .success(function (_result) {
                             $scope.Title = _result[0];
                             $scope.showLoading = false;
-                            defferedPromise.resolve(_result[0]);
+                            
                         })
                         .error(function (_error) {
                             console.log(_error);
-                            defferedPromise.reject(_error);
+                        
                         })
 
 
