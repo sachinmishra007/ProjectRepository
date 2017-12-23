@@ -4,10 +4,10 @@
 
     angular.module("NomineeApp", [])
     .constant('NomineeApplicationConstant', {
-        AppUrl: '/MVCProjectExample.UI/',
-        AppServiceUrl: 'http://localhost/MVCProjectExample.UI/'
-        //ProdAppUrl: '',
-        //ProdAppServiceUrl:''
+        //AppUrl: '/MVCProjectExample.UI/',
+        //AppServiceUrl: 'http://localhost/MVCProjectExample.UI/'
+        AppUrl: '/',
+        AppServiceUrl:'/'
     })
     .directive('showLoader', ['NomineeApplicationConstant', function (NomineeApplicationConstant) {
         return {
